@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <link rel="stylesheet" href="{% static 'style.css' %}">
 <script src="{% static 'script.js' %}"></script>
@@ -110,11 +110,66 @@
   </section>
 
   <!-- ================= VIDEOS SECTION ================= -->
-  
-    
+  <section id="videos" class="section videos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Clips</h2>
+        <p>Some of the best moments from JR Gaming.</p>
+      </div>
 
-     
+      <div class="video-grid">
+        <!-- Video card 1 -->
+         <article class="video-card tilt float-3d">
+  <div class="video-thumb placeholder-thumb">
+   <img src="photos/win11.jpg" > 
+   
+  
+  
+    </button>
+  </div>
+  <div class="video-info">
+    <h3>Windows 11 23h2 support has ended</h3>
+    <p>Windows 11 23h2 will no longer receive security updates</p>
+    <span class="video-meta">Highlight • Competitive</span>
+  </div>
+</article>
+    <!-- Video card 1 -->
+         <article class="video-card tilt float-3d">
+  <div class="video-thumb placeholder-thumb">
+   <img src="photos/largo edit.jpg"> 
+   
+  
+  
+    </button>
+  </div>
+  <div class="video-info">
+    <h3>A new hero, Largo, has been added to Dota 2! 🐸</h3>
+    <p>Unexpected news in the world of Dota 2! Along with the arrival of a new hero named Largo, a major 7.40 patch has also been released.</p>
+    <span class="video-meta">Highlight • Competitive</span>
+  </div>
+</article>
+<!-- Video card 1 -->
+         <article class="video-card tilt float-3d">
+  <div class="video-thumb placeholder-thumb">
+   <img src="photos/Microsoft.jpg"> 
+   
+  
+  
+    </button>
+  </div>
+  <div class="video-info">
+    <h3>Metacritic: The list of the deadliest games of 2025 is out! 📉</h3>
+    <p>As the year draws to a close, Metacritic has released its list of the worst games of 2025. Some projects even scored below 30! Interestingly, a game created by the producer of GTA took first place on the list.</p>
+    <span class="video-meta">Highlight • Competitive</span>
+  </div>
+</article>
+
+
        
+        
+
+        
+
       <div class="section-footer">
         <a href="#" class="btn-outline">
           <i class="fa-solid fa-folder-open"></i>
@@ -545,6 +600,38 @@
     </div>
   </section>
 
+  <!-- ================= COMMUNITY SECTION ================= -->
+  <section id="community" class="section community">
+    <div class="container">
+      <div class="section-header">
+        <h2>Join the Community</h2>
+        <p>Be part of the JR squad across platforms.</p>
+      </div>
+
+      <div class="community-grid">
+        <article class="community-card">
+          <i class="fa-brands fa-discord"></i>
+          <h3>Discord Server</h3>
+          <p>Chat, find teammates, share clips and hang out with the JR community.</p>
+          <a href="#" class="btn-outline">Join Discord</a>
+        </article>
+
+        <article class="community-card">
+          <i class="fa-brands fa-telegram"></i>
+          <h3>Telegram</h3>
+          <p>Stay updated with uploads, sessions and announcements.</p>
+          <a href="#" class="btn-outline">Join Telegram</a>
+        </article>
+
+        <article class="community-card">
+          <i class="fa-brands fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>Behind the scenes, clips and personal moments.</p>
+          <a href="#" class="btn-outline">Follow on Instagram</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= CONTACT SECTION ================= -->
   <section id="contact" class="section contact">
@@ -563,7 +650,34 @@
         </ul>
       </div>
 
-    
+      <form class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="Collaboration, business, etc." />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Write your message here..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <i class="fa-solid fa-paper-plane"></i>
+          Send Message
+        </button>
+      </form>
+    </div>
   </section>
 
   <!-- ================= FOOTER ================= -->
