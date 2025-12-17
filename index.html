@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<script src="{% static 'script.js' %}"></script>
+
+    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title ><article class="video-card tilt"></article>JR Gaming Channel | Official Website</title>
+  <meta name="description" content="JR Gaming Channel - epic gameplay, funny moments, daily action and pure fun." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+  
+  <h1></h1>
+
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="logo-badge">JR</span>
+        <div class="logo-text">
+          <h1>JR Gaming Channel</h1>
+          <p>Epic Gameplay • Funny Moments • Daily Action</p>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#about">About JR</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#contact" class="btn-nav">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a href="#" class="btn-primary">
+          <i class="fa-solid fa-gamepad"></i>
+          Join Now
+        </a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Open navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h2>Welcome to <span>JR Gaming Channel</span></h2>
+        <p>
+          Your daily dose of gameplay, challenges, funny moments and pure gaming energy. 
+          Join the squad and level up every day!
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#videos" class="btn-primary">
+            <i class="fa-solid fa-play"></i>
+            View Featured Videos
+          </a>
+          <a href="#community" class="btn-secondary">
+            <i class="fa-solid fa-users"></i>
+            Join Community
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">10K+</span>
+            <span class="stat-label">Followers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Clips</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">5+</span>
+            <span class="stat-label">Games</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <!-- Bu yerda keyin rasm / art qo'yishing mumkin (mashhur o'yinlar, avatar va hokazo) -->
+        <div class="hero-placeholder">
+          <i class="fa-solid fa-headset"></i>
+          <p>JR Gaming Visual Artwork</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VIDEOS SECTION ================= -->
+  
+    
+
+     
+       
+      <div class="section-footer">
+        <a href="#" class="btn-outline">
+          <i class="fa-solid fa-folder-open"></i>
+          View All Clips
+        </a>
+      </div>
+    </div>
+  </section>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #0f172a, #020617, #000);
+        color: #e2e8f0;
+        overflow-x: hidden;
+    }
+
+    /* Neon orblar */
+    .orb {
+        position: fixed;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: float 10s ease-in-out infinite alternate;
+        pointer-events: none;
+    }
+    .orb.green { background: #22c55e; top: -80px; right: -40px; }
+    .orb.pink  { background: #ec4899; bottom: -120px; left: -60px; animation-duration: 12s; }
+
+    @keyframes float {
+        to { transform: translateY(40px) translateX(-20px); opacity: 0.55; }
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 34px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .section-title {
+        margin-top: 40px;
+        font-size: 22px;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+
+    /* Video-card dizayn */
+    .card {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(148,163,184,0.5);
+        border-radius: 16px;
+        padding: 16px;
+        margin-top: 20px;
+        display: flex;
+        gap: 16px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+        transition: 0.25s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0 30px rgba(34,197,94,0.6);
+    }
+
+    .thumb {
+        width: 260px;
+        height: 150px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .thumb img,
+    .thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .info h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .info p {
+        margin-top: 6px;
+        color: #cbd5e1;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .ad-tag {
+        font-size: 11px;
+        color: #60a5fa;
+        margin-bottom: 6px;
+        display: inline-block;
+        background: rgba(15,23,42,0.9);
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(96,165,250,0.6);
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="orb green"></div>
+<div class="orb pink"></div>
+
+<div class="container">
+    <h1>JR Gaming</h1>
+
+    <!-- MEDIA SECTION -->
+    <h2 class="section-title">Media Kontent</h2>
+    <div id="mediaCards"></div>
+
+    <!-- ADS SECTION -->
+    <h2 class="section-title">Add</h2>
+    <div id="adsCards"></div>
+</div>
+
+<script>
+    const mediaList = JSON.parse(localStorage.getItem("jr_media") || "[]");
+    const adsList   = JSON.parse(localStorage.getItem("jr_ads")   || "[]");
+
+    const mediaArea = document.getElementById("mediaCards");
+    const adsArea   = document.getElementById("adsCards");
+
+    // ✅ MEDIA KARTALARI
+    mediaList.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        let thumb = "";
+
+        if (m.video) {
+            thumb = `<video src="${m.video}" controls></video>`;
+        }
+        else if (m.url) {
+            const id = extractYouTubeID(m.url);
+            thumb = `<a href="${m.url}" target="_blank">
+                        <img src="https://img.youtube.com/vi/${id}/0.jpg">
+                     </a>`;
+        }
+        else if (m.image) {
+            thumb = `<img src="${m.image}">`;
+        }
+
+        card.innerHTML = `
+            <div class="thumb">${thumb}</div>
+            <div class="info">
+                <h3>Media</h3>
+                <p>${m.text || ""}</p>
+            </div>
+        `;
+
+        mediaArea.appendChild(card);
+    });
+
+    // ✅ REKLAMA KARTALARI
+    adsList.forEach(a => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        let thumb = "";
+
+        if (a.video) {
+            thumb = `<video src="${a.video}" controls></video>`;
+        }
+        else if (a.image) {
+            thumb = `<img src="${a.image}">`;
+        }
+        else {
+            thumb = `<img src="https://via.placeholder.com/260x150/1e293b/ffffff?text=Reklama">`;
+        }
+
+        const linkStart = a.url ? `<a href="${a.url}" target="_blank">` : "";
+        const linkEnd   = a.url ? `</a>` : "";
+
+        card.innerHTML = `
+            <div class="thumb">${linkStart}${thumb}${linkEnd}</div>
+            <div class="info">
+                <span class="ad-tag">REKLAMA</span>
+                <p>${a.text || ""}</p>
+            </div>
+        `;
+
+        adsArea.appendChild(card);
+    });
+
+    // ✅ YouTube ID ajratish
+    function extractYouTubeID(url) {
+        try {
+            return url.split("v=")[1].split("&")[0];
+        } catch {
+            return "";
+        }
+    }
+</script>
+
+  
+  <style>
+    body {
+        background: #0f172a;
+        color: #e2e8f0;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .video-card {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 16px;
+        backdrop-filter: blur(10px);
+    }
+
+    .video-thumb {
+        width: 260px;
+        height: 150px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .video-thumb img,
+    .video-thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+</head>
+
+<body>
+
+
+
+<style>
+    body {
+        background: #0f172a;
+        color: #e2e8f0;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .video-card {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 16px;
+        backdrop-filter: blur(10px);
+    }
+
+    .video-thumb {
+        width: 260px;
+        height: 150px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .video-thumb img,
+    .video-thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .video-info p {
+        margin-top: 6px;
+        color: #cbd5e1;
+    }
+</style>
+</head>
+
+<body>
+
+
+<script>
+    const uploads = JSON.parse(localStorage.getItem("jr_uploads") || "[]");
+
+    uploads.forEach(media => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        let thumb = "";
+
+        if (media.video) {
+            thumb = `<video src="${media.video}" controls></video>`;
+        } 
+        else if (media.url) {
+            const id = media.url.split("v=")[1]?.split("&")[0] || "";
+            thumb = `<a href="${media.url}" target="_blank">
+                        <img src="https://img.youtube.com/vi/${id}/0.jpg">
+                     </a>`;
+        } 
+        else if (media.image) {
+            thumb = `<img src="${media.image}">`;
+        }
+
+        card.innerHTML = `
+            <div class="video-thumb">${thumb}</div>
+            <div class="video-info">
+                <p>${media.text || ""}</p>
+            </div>
+        `;
+
+        document.getElementById("cards").appendChild(card);
+    });
+</script>
+
+
+
+
+  <!-- ================= GAMES SECTION ================= -->
+  <section id="games" class="section games">
+    <div class="container">
+      <div class="section-header">
+        <h2>Games I Play</h2>
+        <p>From competitive shooters to chill adventures.</p>
+      </div>
+
+      <div class="games-grid">
+        <article class="game-card">
+          <h3>Valorant</h3>
+          <p>Tactical FPS with clutch moments, insane aim and high tension every round.</p>
+          <span class="game-tag">Ranked & Competitive</span>
+        </article>
+
+        <article class="game-card">
+          <h3>Fortnite</h3>
+          <p>High-energy battle royale with crazy builds, edits and funny duo chaos.</p>
+          <span class="game-tag">Battle Royale</span>
+        </article>
+
+        <article class="game-card">
+          <h3>Minecraft</h3>
+          <p>Creative builds, survival challenges and chill sessions with the community.</p>
+          <span class="game-tag">Creative & Survival</span>
+        </article>
+
+        <article class="game-card">
+          <h3>GTA V</h3>
+          <p>Story missions, chaos moments and roleplay ideas with viewers.</p>
+          <span class="game-tag">Open World</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT SECTION ================= -->
+  <section id="about" class="section about">
+    <div class="container about-layout">
+      <div class="about-text">
+        <h2>About JR</h2>
+        <p>
+          I’m Jasurbek, the creator of JR Gaming Channel. 
+          Here I share my best gaming moments, funny reactions, insane clutches 
+          and everything that makes gaming fun.
+        </p>
+        <p>
+          Gaming is more than just a hobby for me — it’s a way to connect with people, 
+          laugh together and push our skills to the next level. 
+          Every clip is made to entertain you and bring good vibes.
+        </p>
+        <p>
+          If you love intense matches, troll moments and high-energy gameplay, 
+          you’re in the right place. Welcome to the JR squad.
+        </p>
+      </div>
+
+      <div class="about-highlight">
+        <div class="about-card">
+          <h3>Channel Focus</h3>
+          <ul>
+            <li>High-energy gameplay</li>
+            <li>Funny moments & reactions</li>
+            <li>Challenges & experiments</li>
+            <li>Community-driven content</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3>Session Style</h3>
+          <p>Mix of casual fun, intense ranked games and community events.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="section contact">
+    <div class="container contact-layout">
+      <div class="contact-info">
+        <h2>Contact & Collabs</h2>
+        <p>
+          For business inquiries, collaborations or sponsorships, 
+          feel free to reach out using the form or email below.
+        </p>
+        <ul class="contact-list">
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <span>jasurbekravshanov761@gmail.com</span>
+          </li>
+        </ul>
+      </div>
+
+    
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© <span id="year"></span> JR Gaming Channel. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#"><i class="fa-solid fa-gamepad"></i></a>
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+        <a href="#"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple JS: dynamic year -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+<script src="script.js"></script>
+
+<style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        /* LOGIN ICONKA */
+        .login-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: 0.2s;
+        }
+
+        .login-icon:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.08);
+        }
+
+        .login-icon img {
+            width: 26px;
+            height: 26px;
+            filter: invert(1);
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<!-- ✅ LOGIN ICONKA -->
+<div class="login-button" onclick="window.location.href='login.html'">
+  
+    <span>Login</span>
+
+    
+</div>
+
+</body>
+</html>

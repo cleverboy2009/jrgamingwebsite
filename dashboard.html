@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JR Gaming • Admin Dashboard</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+        color: #e2e8f0;
+        background: radial-gradient(circle at top, #0f172a, #020617, #000);
+        overflow-x: hidden;
+    }
+
+    .orb {
+        position: fixed;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: float 10s ease-in-out infinite alternate;
+        pointer-events: none;
+    }
+    .orb.green { background: #22c55e; top: -80px; right: -40px; }
+    .orb.pink  { background: #ec4899; bottom: -120px; left: -60px; animation-duration: 12s; }
+
+    @keyframes float {
+        to { transform: translateY(40px) translateX(-20px); opacity: 0.55; }
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .title-block h1 {
+        margin: 0;
+        font-size: 30px;
+        letter-spacing: 1px;
+    }
+
+    .title-block span {
+        font-size: 13px;
+        color: #94a3b8;
+    }
+
+    .logout-btn {
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.5);
+        background: rgba(15,23,42,0.9);
+        color: #e2e8f0;
+        cursor: pointer;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+        transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+        background: rgba(30,64,175,0.9);
+        transform: translateY(-1px);
+        box-shadow: 0 0 20px rgba(59,130,246,0.6);
+    }
+
+    h2.section-title {
+        margin-top: 32px;
+        font-size: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .section-sub {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-bottom: 8px;
+    }
+
+    .panel {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148,163,184,0.5);
+        border-radius: 16px;
+        padding: 18px 18px 16px;
+        margin-top: 16px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .panel-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    .panel-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .panel-title-row h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .tag {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.1px;
+        color: #60a5fa;
+        background: rgba(15,23,42,0.9);
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(96,165,250,0.6);
+    }
+
+    .delete-btn {
+        background: rgba(248,113,113,0.12);
+        border: 1px solid rgba(239,68,68,0.6);
+        padding: 5px 9px;
+        border-radius: 999px;
+        cursor: pointer;
+        color: #fecaca;
+        font-size: 11px;
+        backdrop-filter: blur(6px);
+        transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+        background: rgba(239,68,68,0.9);
+        color: #fef2f2;
+        box-shadow: 0 0 14px rgba(239,68,68,0.9);
+        transform: translateY(-1px);
+    }
+
+    label {
+        font-size: 13px;
+        margin-bottom: 4px;
+        display: block;
+        color: #cbd5f5;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px 11px;
+        border-radius: 10px;
+        border: 1px solid rgba(148,163,184,0.6);
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
+        margin-bottom: 12px;
+        outline: none;
+        font-size: 13px;
+        transition: 0.16s;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 70px;
+        max-height: 180px;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #22c55e;
+        box-shadow: 0 0 0 1px rgba(34,197,94,0.6), 0 0 16px rgba(34,197,94,0.5);
+    }
+
+    .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 12px;
+    }
+
+    video, img {
+        width: 100%;
+        border-radius: 12px;
+        margin-top: 6px;
+        display: none;
+        border: 1px solid rgba(148,163,184,0.6);
+        background: #020617;
+    }
+
+    .save-btn {
+        padding: 9px 16px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, #22c55e, #4ade80);
+        color: #052e16;
+        font-weight: 600;
+        font-size: 13px;
+        box-shadow: 0 0 18px rgba(34,197,94,0.75);
+        transition: 0.18s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+    }
+
+    .save-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 0 26px rgba(34,197,94,0.95);
+    }
+
+    .add-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+    }
+
+    .add-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        font-size: 28px;
+        background: radial-gradient(circle at top, #22c55e, #15803d);
+        color: #ecfdf5;
+        border: 1px solid rgba(34,197,94,0.9);
+        cursor: pointer;
+        box-shadow: 0 0 26px rgba(34,197,94,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.18s;
+    }
+
+    .add-btn:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 0 34px rgba(34,197,94,1);
+    }
+
+    @media (max-width: 720px) {
+        .field-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="orb green"></div>
+<div class="orb pink"></div>
+
+<div class="container">
+
+    <div class="header">
+        <div class="title-block">
+            <h1>JR Gaming • Admin Dashboard</h1>
+            <span>Media & Reklama boshqaruvi</span>
+        </div>
+        <button class="logout-btn" onclick="window.location.href='index.html'">← Bosh sahifa</button>
+    </div>
+
+    <h2 class="section-title">Media</h2>
+    <div class="section-sub">Video, rasm, YouTube link va matn kartalari</div>
+    <div id="mediaArea"></div>
+    <div class="add-wrapper">
+        <button class="add-btn" onclick="addMedia()">+</button>
+    </div>
+
+    <h2 class="section-title">Dashboardda ko‘rinmayotgan eski media</h2>
+    <div class="section-sub">Bu kartalar index.html da chiqayapdi, lekin dashboard ularni ko‘ra olmaydi</div>
+    <div id="invisibleMediaArea"></div>
+
+    <h2 class="section-title">Reklama</h2>
+    <div class="section-sub">Banner / reklama kartalari</div>
+    <div id="adsArea"></div>
+    <div class="add-wrapper">
+        <button class="add-btn" onclick="addAd()">+</button>
+    </div>
+    <script>
+/* ✅ LOCALSTORAGE O‘QISH */
+let mediaList = JSON.parse(localStorage.getItem("jr_media") || "[]");
+let adsList   = JSON.parse(localStorage.getItem("jr_ads")   || "[]");
+
+/* ✅ MEDIA QO‘SHISH */
+function addMedia() {
+    mediaList.push({
+        url: "",
+        text: "",
+        video: null,
+        image: null
+    });
+
+    saveMediaList();
+    renderMedia();
+}
+
+/* ✅ MEDIA RENDER */
+function renderMedia() {
+    const area = document.getElementById("mediaArea");
+    area.innerHTML = "";
+
+    mediaList.forEach((m, index) => {
+        const panel = document.createElement("div");
+        panel.className = "panel";
+
+        panel.innerHTML = `
+            <div class="panel-inner">
+                <div class="panel-title-row">
+                    <h3>Media #${index + 1}</h3>
+                    <span class="tag">MEDIA</span>
+                    <button class="delete-btn" onclick="deleteMedia(${index})">✕ O'chirish</button>
+                </div>
+
+                <label>YouTube URL:</label>
+                <input id="m-url-${index}" value="${m.url}">
+
+                <div class="field-row">
+                    <div>
+                        <label>Video yuklash:</label>
+                        <input type="file" id="m-video-file-${index}" accept="video/*">
+                        <video id="m-video-prev-${index}" controls></video>
+                    </div>
+
+                    <div>
+                        <label>Rasm yuklash:</label>
+                        <input type="file" id="m-image-file-${index}" accept="image/*">
+                        <img id="m-image-prev-${index}">
+                    </div>
+                </div>
+
+                <label>Matn:</label>
+                <textarea id="m-text-${index}" rows="3">${m.text}</textarea>
+
+                <button class="save-btn" onclick="saveMedia(${index})">💾 Saqlash</button>
+            </div>
+        `;
+
+        area.appendChild(panel);
+
+        const vPrev = document.getElementById(`m-video-prev-${index}`);
+        const iPrev = document.getElementById(`m-image-prev-${index}`);
+
+        if (m.video) {
+            vPrev.src = m.video;
+            vPrev.style.display = "block";
+            vPrev.dataset.base64 = m.video;
+        }
+
+        if (m.image) {
+            iPrev.src = m.image;
+            iPrev.style.display = "block";
+            iPrev.dataset.base64 = m.image;
+        }
+
+        document.getElementById(`m-video-file-${index}`).addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                vPrev.src = reader.result;
+                vPrev.style.display = "block";
+                vPrev.dataset.base64 = reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById(`m-image-file-${index}`).addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                iPrev.src = reader.result;
+                iPrev.style.display = "block";
+                iPrev.dataset.base64 = reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+}
+
+/* ✅ MEDIA SAQLASH */
+function saveMedia(index) {
+    const url  = document.getElementById(`m-url-${index}`).value.trim();
+    const text = document.getElementById(`m-text-${index}`).value.trim();
+    const vPrev = document.getElementById(`m-video-prev-${index}`);
+    const iPrev = document.getElementById(`m-image-prev-${index}`);
+
+    mediaList[index] = {
+        url,
+        text,
+        video: vPrev.dataset.base64 || null,
+        image: iPrev.dataset.base64 || null
+    };
+
+    saveMediaList();
+    alert("Media saqlandi!");
+}
+
+/* ✅ MEDIA O‘CHIRISH */
+function deleteMedia(index) {
+    mediaList.splice(index, 1);
+    saveMediaList();
+    renderMedia();
+    renderInvisibleMedia();
+}
+
+function saveMediaList() {
+    localStorage.setItem("jr_media", JSON.stringify(mediaList));
+}
+
+/* ✅ REKLAMA QO‘SHISH */
+function addAd() {
+    adsList.push({
+        url: "",
+        text: "",
+        video: null,
+        image: null
+    });
+
+    saveAdsList();
+    renderAds();
+}
+
+/* ✅ REKLAMA RENDER */
+function renderAds() {
+    const area = document.getElementById("adsArea");
+    area.innerHTML = "";
+
+    adsList.forEach((a, index) => {
+        const panel = document.createElement("div");
+        panel.className = "panel";
+
+        panel.innerHTML = `
+            <div class="panel-inner">
+                <div class="panel-title-row">
+                    <h3>Reklama #${index + 1}</h3>
+                    <span class="tag">AD</span>
+                    <button class="delete-btn" onclick="deleteAd(${index})">✕ O'chirish</button>
+                </div>
+
+                <label>Reklama URL:</label>
+                <input id="a-url-${index}" value="${a.url}">
+
+                <div class="field-row">
+                    <div>
+                        <label>Video reklama:</label>
+                        <input type="file" id="a-video-file-${index}" accept="video/*">
+                        <video id="a-video-prev-${index}" controls></video>
+                    </div>
+
+                    <div>
+                        <label>Rasmli reklama:</label>
+                        <input type="file" id="a-image-file-${index}" accept="image/*">
+                        <img id="a-image-prev-${index}">
+                    </div>
+                </div>
+
+                <label>Reklama matni:</label>
+                <textarea id="a-text-${index}" rows="3">${a.text}</textarea>
+
+                <button class="save-btn" onclick="saveAd(${index})">💾 Saqlash</button>
+            </div>
+        `;
+
+        area.appendChild(panel);
+
+        const vPrev = document.getElementById(`a-video-prev-${index}`);
+        const iPrev = document.getElementById(`a-image-prev-${index}`);
+
+        if (a.video) {
+            vPrev.src = a.video;
+            vPrev.style.display = "block";
+            vPrev.dataset.base64 = a.video;
+        }
+
+        if (a.image) {
+            iPrev.src = a.image;
+            iPrev.style.display = "block";
+            iPrev.dataset.base64 = a.image;
+        }
+
+        document.getElementById(`a-video-file-${index}`).addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                vPrev.src = reader.result;
+                vPrev.style.display = "block";
+                vPrev.dataset.base64 = reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById(`a-image-file-${index}`).addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                iPrev.src = reader.result;
+                iPrev.style.display = "block";
+                iPrev.dataset.base64 = reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+}
+
+/* ✅ REKLAMA SAQLASH */
+function saveAd(index) {
+    const url  = document.getElementById(`a-url-${index}`).value.trim();
+    const text = document.getElementById(`a-text-${index}`).value.trim();
+    const vPrev = document.getElementById(`a-video-prev-${index}`);
+    const iPrev = document.getElementById(`a-image-prev-${index}`);
+
+    adsList[index] = {
+        url,
+        text,
+        video: vPrev.dataset.base64 || null,
+        image: iPrev.dataset.base64 || null
+    };
+
+    saveAdsList();
+    alert("Reklama saqlandi!");
+}
+
+/* ✅ REKLAMA O‘CHIRISH */
+function deleteAd(index) {
+    adsList.splice(index, 1);
+    saveAdsList();
+    renderAds();
+}
+
+function saveAdsList() {
+    localStorage.setItem("jr_ads", JSON.stringify(adsList));
+}
+</script>
+<script>
+/* ✅ ESKI FORMATDAGI MEDIA OBYEKTINI TO‘G‘RILASH (AUTO-FIX) */
+mediaList = mediaList.map(item => ({
+    url: item.url ?? "",
+    text: item.text ?? "",
+    video: item.video ?? null,
+    image: item.image ?? null
+}));
+
+adsList = adsList.map(item => ({
+    url: item.url ?? "",
+    text: item.text ?? "",
+    video: item.video ?? null,
+    image: item.image ?? null
+}));
+
+localStorage.setItem("jr_media", JSON.stringify(mediaList));
+localStorage.setItem("jr_ads", JSON.stringify(adsList));
+
+/* ✅ DASHBOARDDA KO‘RINMAYOTGAN ESKI MEDIA */
+function getInvisibleMedia() {
+    return mediaList.filter(item => {
+        return (
+            !("url" in item) ||
+            !("text" in item) ||
+            !("video" in item) ||
+            !("image" in item)
+        );
+    });
+}
+
+/* ✅ ESKI MEDIA BO‘LIMINI CHIZISH */
+function renderInvisibleMedia() {
+    const old = getInvisibleMedia();
+    const area = document.getElementById("invisibleMediaArea");
+    area.innerHTML = "";
+
+    if (old.length === 0) {
+        area.innerHTML = "<p style='color:#94a3b8;'>Eski media topilmadi.</p>";
+        return;
+    }
+
+    old.forEach((item, index) => {
+        const panel = document.createElement("div");
+        panel.className = "panel";
+
+        panel.innerHTML = `
+            <div class="panel-inner">
+                <div class="panel-title-row">
+                    <h3>Eski Media #${index + 1}</h3>
+                    <span class="tag">OLD</span>
+                    <button class="delete-btn" onclick="deleteInvisibleMedia(${index})">✕ O'chirish</button>
+                </div>
+
+                <p style="color:#cbd5e1;font-size:14px;">
+                    Bu media eski versiyada saqlangan. Dashboard uni ko‘ra olmaydi,
+                    lekin bosh sahifada chiqayapdi.
+                </p>
+            </div>
+        `;
+
+        area.appendChild(panel);
+    });
+}
+
+/* ✅ ESKI MEDIA O‘CHIRISH */
+function deleteInvisibleMedia(oldIndex) {
+    const old = getInvisibleMedia();
+    const target = old[oldIndex];
+
+    mediaList = mediaList.filter(item => item !== target);
+
+    localStorage.setItem("jr_media", JSON.stringify(mediaList));
+
+    alert("Eski media o‘chirildi!");
+    location.reload();
+}
+
+/* ✅ DASHBOARD OCHILGANDA HAMMASINI YUKLASH */
+renderMedia();
+renderAds();
+renderInvisibleMedia();
+</script>
+
+</body>
+</html>

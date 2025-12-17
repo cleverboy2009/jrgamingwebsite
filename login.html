@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JR Gaming • Admin Login</title>
+    <style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, #0f172a, #020617, #000);
+            color: #e2e8f0;
+            overflow: hidden;
+        }
+
+        /* Neon blur background */
+        .orb {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .orb.green {
+            background: #22c55e;
+            top: -80px;
+            right: -40px;
+        }
+
+        .orb.pink {
+            background: #ec4899;
+            bottom: -100px;
+            left: -60px;
+            animation-duration: 10s;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(40px) translateX(-20px);
+                opacity: 0.55;
+            }
+        }
+
+        .login-box {
+            position: relative;
+            z-index: 2;
+            width: 360px;
+            padding: 28px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 0.5s ease-out forwards;
+            transform: translateY(10px);
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 6px;
+            font-size: 22px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            color: #e2e8f0;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #22c55e;
+            box-shadow: 0 0 10px #22c55e55;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+            color: #0f172a;
+            box-shadow: 0 0 18px #22c55e88;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px #22c55eaa;
+        }
+
+        .error {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #f87171;
+            text-align: center;
+            display: none;
+        }
+
+        .back {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .back a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .back a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="orb green"></div>
+<div class="orb pink"></div>
+
+<div class="login-box">
+    <h2>Admin Login</h2>
+    <p>JR Gaming boshqaruv paneliga kirish</p>
+
+    <div class="input-group">
+        <label>Username</label>
+        <input id="user" placeholder="admin">
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input id="pass" type="password" placeholder="********">
+    </div>
+
+    <button class="btn" onclick="login()">Kirish</button>
+
+    <div class="error" id="errorBox">Login yoki parol noto‘g‘ri!</div>
+
+    <div class="back">
+        <a href="index.html">← Bosh sahifaga qaytish</a>
+    </div>
+</div>
+
+<script>
+function login() {
+    const u = document.getElementById("user").value.trim();
+    const p = document.getElementById("pass").value.trim();
+    const errorBox = document.getElementById("errorBox");
+
+    if (u === "admin" && p === "12345") {
+        window.location = "dashboard.html";
+    } else {
+        errorBox.style.display = "block";
+    }
+}
+</script>
+
+<!-- ✅ O‘NG TOMONDA CHIQADIGAN MODAL OYNA -->
+<div class="side-modal" id="sideModal">
+    <h3>Kechirasiz!</h3>
+    <p>Bu panel faqat adminlar uchun.</p>
+    <p>5 soniyadan so‘ng bosh menyuga qaytasiz.</p>
+</div>
+
+ <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617, #000);
+            color: #e2e8f0;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .login-box {
+            width: 350px;
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #22c55e;
+            box-shadow: 0 0 10px #22c55e55;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+            color: #0f172a;
+            font-weight: bold;
+            box-shadow: 0 0 15px #22c55e88;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px #22c55eaa;
+        }
+
+        .error {
+            margin-top: 10px;
+            color: #f87171;
+            display: none;
+            text-align: center;
+        }
+
+        /* ✅ O‘ng tomonda chiqadigan modal */
+        .side-modal {
+            position: fixed;
+            top: 20px;
+            right: -350px; /* Boshlanish holati */
+            width: 300px;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            color: #e2e8f0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            transition: right 0.5s ease;
+            z-index: 999;
+        }
+
+        .side-modal.show {
+            right: 20px; /* ✅ Animatsiya bilan chiqadi */
+        }
+
+        .side-modal h3 {
+            color: #f87171;
+            margin-bottom: 8px;
+        }
+
+        .side-modal p {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    
+    <div class="error" id="errorBox">Login yoki parol noto‘g‘ri!</div>
+</div>
+
+<!-- ✅ O‘NG TOMONDA CHIQADIGAN MODAL -->
+<div class="side-modal" id="sideModal">
+    <h3>Kechirasiz!</h3>
+    <p>Bu panel faqat adminlar uchun.</p>
+    <p>5 soniyadan so‘ng bosh menyuga qaytasiz.</p>
+</div>
+
+<script>
+let attempts = 0;
+
+function login() {
+    const u = document.getElementById("user").value.trim();
+    const p = document.getElementById("pass").value.trim();
+    const errorBox = document.getElementById("errorBox");
+    const modal = document.getElementById("sideModal");
+
+    // ✅ To‘g‘ri login
+    if (u === "admin" && p === "12345") {
+        window.location = "dashboard.html";
+        return;
+    }
+
+    // ❌ Xato login
+    attempts++;
+    errorBox.style.display = "block";
+
+    // ✅ 3 marta xato bo‘lsa modal ochiladi
+    if (attempts >= 3) {
+        modal.classList.add("show");
+
+        setTimeout(() => {
+            window.location = "index.html";
+        }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
